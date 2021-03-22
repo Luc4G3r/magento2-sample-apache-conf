@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+        ServerName samplepage.local
+        ServerAlias samplepage.local www.samplepage.local
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html/magento2/root/pub
+
+        <Directory /var/www/html/magento2/root/>
+                DirectoryIndex index.php index.html
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Require all granted
+                Order allow,deny
+                Allow from all
+        </Directory>
+        
+        # enable FCGI
+#       <FilesMatch \.php$>
+#               SetHandler "proxy:unix:/var/run/php/php7.1-fpm.sock|fcgi://localhost/"
+#       </FilesMatch>
+        
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
